@@ -13,7 +13,7 @@ Projeto-Jogo desenvolvido em Java com o tema base sobre Criptografia, com o intu
 ---
 ☝️ **Passos:**
 1. **Baixe o projeto** e extraia na pasta `Jogo`
-2. **Baixe as Ferramentas** e deixe-as fora da pasta do Vs Code
+2. **Baixe a pasta `Ferramentas`** e deixe-as fora da pasta do Vs Code
 3. **Abra no VS Code somente** a pasta `Jogo`
 4. **Rode no Vs Code** em Run Java
 ---
