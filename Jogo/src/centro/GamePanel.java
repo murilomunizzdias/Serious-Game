@@ -30,7 +30,7 @@ public class GamePanel extends JPanel implements Runnable{
     int fps=60;
     KeyHandler keyH= new KeyHandler();
     Thread gameThread;
-    public Player player = new Player(this, keyH);
+    public Player player = new Player(this, keyH, fps, fps);
     public CollisionChecker cChecker= new CollisionChecker(this);
     public AssetSetter aSetter= new AssetSetter(this);
     public SuperObject obj[] = new SuperObject[10];
