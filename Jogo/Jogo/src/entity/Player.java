@@ -14,7 +14,7 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
 
-    public Player(GamePanel gp, KeyHandler keyH){
+    public Player(GamePanel gp, KeyHandler keyH, int solidAreaDefaultX, int solidAreaDefaultY){
         this.gp = gp;
         this.keyH = keyH;
 
@@ -24,6 +24,8 @@ public class Player extends Entity {
         solidArea=new Rectangle();
         solidArea.x=8;
         solidArea.y=16;
+        solidAreaDefaultX=solidArea.x;
+        solidAreaDefaultY=solidArea.y;
         solidArea.width=32;
         solidArea.height=32;
 
@@ -73,6 +75,8 @@ public class Player extends Entity {
 
             collisionOn=false;
             gp.cChecker.checkTile(this);
+
+            gp.cChecker.checkObject(this, true);   
 
             //IF COLLISION IS FALSE, PLAYER CAN MOVE
             if(collisionOn==false){

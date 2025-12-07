@@ -11,5 +11,8 @@ public class OBJ_KEY extends SuperObject {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
+        solidArea.x = 5;
+        
     }
 }
