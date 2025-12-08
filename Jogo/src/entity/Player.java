@@ -13,7 +13,7 @@ public class Player extends Entity {
 
     public final int screenX;
     public final int screenY;
-    int hasKey=0;
+    public int hasKey=0;
 
     public Player(GamePanel gp, KeyHandler keyH, int solidAreaDefaultX, int solidAreaDefaultY){
         this.gp = gp;
@@ -121,25 +121,37 @@ public class Player extends Entity {
                     gp.playSE(1);
                     hasKey++;
                     gp.obj[i] = null;
-                    System.out.println("Chaves: " + hasKey);
+                    gp.ui.showMessage("Voçê pegou uma chave!");
                     break;
                 case "Door":
                     if(hasKey>0){
                         gp.playSE(3);
                         gp.obj[i] = null;
                         hasKey--;
-                        System.out.println("Porta aberta! Chaves restantes: " + hasKey);
+                        gp.ui.showMessage("Você usou uma chave!");
                     break;
                     }else{
-                        System.out.println("Você precisa de uma chave para abrir esta porta.");
+                        gp.ui.showMessage("Sem chaves no inventário");
+                        
                     }
                 case "Boots":
                     gp.playSE(2);
                     speed += 2; // Aumenta a velocidade do jogador 
                     gp.obj[i] = null; // Remove as botas do jogo
-                    System.out.println("Você pegou as botas!");
+                    gp.ui.showMessage("Acelerando!");
                     break;   
+
+                case "Chest":
+                    
+                    gp.ui.showMessage("Você venceu!");
+                    gp.ui.gameFinished=true;
+                    gp.stopMusic(); 
+                    gp.playSE(4);
+                    // Aqui você pode adicionar lógica para finalizar o jogo, se necessário
+                    break;
                 }
+
+                
             }
         return 0;
     }
