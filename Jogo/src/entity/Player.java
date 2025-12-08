@@ -77,6 +77,7 @@ public class Player extends Entity {
             collisionOn=false;
             gp.cChecker.checkTile(this);
 
+            //check object collision
             int objIndex = gp.cChecker.checkObject(this, true);
             pickUpObject(objIndex);
 
@@ -117,12 +118,14 @@ public class Player extends Entity {
 
             switch (objectName) {
                 case "Key":
+                    gp.playSE(1);
                     hasKey++;
                     gp.obj[i] = null;
                     System.out.println("Chaves: " + hasKey);
                     break;
                 case "Door":
                     if(hasKey>0){
+                        gp.playSE(3);
                         gp.obj[i] = null;
                         hasKey--;
                         System.out.println("Porta aberta! Chaves restantes: " + hasKey);
@@ -130,6 +133,12 @@ public class Player extends Entity {
                     }else{
                         System.out.println("Você precisa de uma chave para abrir esta porta.");
                     }
+                case "Boots":
+                    gp.playSE(2);
+                    speed += 2; // Aumenta a velocidade do jogador 
+                    gp.obj[i] = null; // Remove as botas do jogo
+                    System.out.println("Você pegou as botas!");
+                    break;   
                 }
             }
         return 0;
