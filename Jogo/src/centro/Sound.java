@@ -13,6 +13,7 @@ public class Sound {
         soundURL[2] = getClass().getResource("/res/sound/powerup.wav");
         soundURL[3] = getClass().getResource("/res/sound/unlock.wav");
         soundURL[4] = getClass().getResource("/res/sound/fanfare.wav");
+        
     
         // Add more sounds as needed
     }

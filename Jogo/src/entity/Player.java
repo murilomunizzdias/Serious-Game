@@ -6,6 +6,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import centro.GamePanel;
 import centro.KeyHandler;
+import centro.UtilityTool;
 
 public class Player extends Entity {
     GamePanel gp;
@@ -40,22 +41,30 @@ public class Player extends Entity {
         direction="down";
     }
    public void getPlayerImage() {
-    try {
-        // Note que começa direto com /Oliver
-        up1 = ImageIO.read(getClass().getResourceAsStream("/res/Oliver/Oliver_up_1.png"));
-        up2 = ImageIO.read(getClass().getResourceAsStream("/res/Oliver/Oliver_up_2.png"));
-        down1 = ImageIO.read(getClass().getResourceAsStream("/res/Oliver/Oliver_down_1.png"));
-        down2 = ImageIO.read(getClass().getResourceAsStream("/res/Oliver/Oliver_down_2.png"));
-        left1 = ImageIO.read(getClass().getResourceAsStream("/res/Oliver/Oliver_left_1.png"));
-        left2 = ImageIO.read(getClass().getResourceAsStream("/res/Oliver/Oliver_left_2.png"));
-        right1 = ImageIO.read(getClass().getResourceAsStream("/res/Oliver/Oliver_right_1.png"));
-        // ATENÇÃO: Havia um erro de digitação aqui ("riht2" -> "right2")
-        right2 = ImageIO.read(getClass().getResourceAsStream("/res/Oliver/Oliver_right_2.png")); 
-        
-    } catch(IOException e) {
-        e.printStackTrace();
+        up1 = setup("Oliver_up_1");
+        up2 = setup("Oliver_up_2");
+        down1 = setup("Oliver_down_1");
+        down2 = setup("Oliver_down_2");
+        left1 = setup("Oliver_left_1");
+        left2 = setup("Oliver_left_2");
+        right1 = setup("Oliver_right_1");
+        right2 = setup("Oliver_right_2");
+
     }
-}
+
+    public BufferedImage setup(String imageName){
+       UtilityTool uTool = new UtilityTool();
+       BufferedImage image = null;
+
+       try{
+          image = ImageIO.read(getClass().getResourceAsStream("/res/Oliver/"+imageName + ".png"));
+          image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+
+       }catch(IOException e){
+          e.printStackTrace();
+       }
+       return image;
+    }
     
     public void update(){
 
@@ -143,7 +152,6 @@ public class Player extends Entity {
 
                 case "Chest":
                     
-                    gp.ui.showMessage("Você venceu!");
                     gp.ui.gameFinished=true;
                     gp.stopMusic(); 
                     gp.playSE(4);
@@ -193,6 +201,6 @@ public class Player extends Entity {
                 }
                 break;
         }
-        g2.drawImage(image,screenX ,screenY,gp.tileSize, gp.tileSize,null);
+        g2.drawImage(image,screenX ,screenY, null);
     }
 }
