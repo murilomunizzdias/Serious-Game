@@ -6,10 +6,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import javax.imageio.ImageIO;
-import java.io.IOException;
 
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 
 import centro.GamePanel;
 import centro.UtilityTool;

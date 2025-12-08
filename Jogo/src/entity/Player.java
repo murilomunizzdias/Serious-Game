@@ -37,7 +37,7 @@ public class Player extends Entity {
     public void setDefaultValues(){
         worldX=gp.tileSize*16;//definir no txt
         worldY=gp.tileSize*22;//definir no txt
-        speed= 4;
+        speed= 3;
         direction="down";
     }
    public void getPlayerImage() {
