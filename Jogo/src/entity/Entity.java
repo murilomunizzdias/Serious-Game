@@ -26,7 +26,7 @@ public class Entity {
    public int solidAreaDefaultY;
 
    public int actionLockCounter = 0;
-   String dialogues[] = new String[20];
+   String dialogues[] = new String[50];
    int dialogueIndex=0;
    
    public Entity(GamePanel gp){
@@ -67,23 +67,6 @@ public class Entity {
       gp.cChecker.checkObject(this, false);
       gp.cChecker.checkPlayer(this);
 
-      //IF COLLISION IS FALSE NPC MOVE
-      if(collisionOn==false){
-            switch(direction){
-              case "up":
-                  worldY -= speed;
-                  break;
-              case "down":
-                  worldY += speed;
-                  break;
-              case "left":
-                  worldX -= speed;
-                  break;
-              case "right":
-                  worldX += speed;
-                  break;
-            }
-      }
 
          spriteCounter++;
          if(spriteCounter>10){

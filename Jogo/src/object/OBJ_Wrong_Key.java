@@ -1,22 +1,22 @@
 package object;
+
+import java.io.IOException;
+
 import javax.imageio.ImageIO;
 
 import centro.GamePanel;
 
-import java.io.IOException;
-public class OBJ_Door extends SuperObject { 
+public class OBJ_Wrong_Key extends SuperObject {
     GamePanel gp;
 
-    public OBJ_Door(GamePanel gp) {
-        name = "Door";
+    public OBJ_Wrong_Key(GamePanel gp){ 
+        name = "WrongKey";
 
         try {
-            image =ImageIO.read(getClass().getResourceAsStream("/res/objects/door.png"));
+            image =ImageIO.read(getClass().getResourceAsStream("/res/objects/key.png"));
             uTool.scaleImage(image, gp.tileSize, gp.tileSize);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        collision=true;
     }
-
 }

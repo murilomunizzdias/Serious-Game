@@ -1,6 +1,6 @@
 package entity;
 
-import java.util.Random;
+
 
 import centro.GamePanel;
 
@@ -35,37 +35,20 @@ public class NPC_OldMan extends Entity {
         dialogues[2] = "Conseguir ele não será fácil, \n será preciso conhecer CRIPTOGRAFIA!";
         dialogues[3] = "Você deve seguir os três caminhos abaixos";
         dialogues[4] = "lá meus aprendizes vão te apresentar uma\n mensagem criptografada,\ndecifrando ela voce ganha uma chave!";
-        dialogues[5] = "Conseguindo três você \nconsegue passar pelo castelo";
-        dialogues[6] = "Boa sorte, você vai precisar....";
-        dialogues[7] = "Se achar difícil lembre, \npelo menos nao é prova por indução";
+        dialogues[5] = "Para criptografar, você tera que\n usar essa chave:";
+        dialogues[6] = "[1 2]\n[5 3]\n anote isso em um caderno\nai no mundo real";
+        dialogues[7] = "Eu sei que estou num\n jogo....";
+        dialogues[8] = "Anote também nosso seguinte\n alfabeto";
+        dialogues[9] = "A (0,0)  B (1,0)  C (2,0)  D (3,0)  E (4,0)\nF (0,1)  G (1,1)  I (2,1)  J (3,1)  L (4,1)\nM (0,2)  N (1,2)  O (2,2)  P (3,2)  R (4,2)\nS (0,3)  T (1,3)  U (2,3)  [Espaço] (3,3)";
+        dialogues[10] = "A matriz chave 2x2 que eu te dei\n vai estar multiplicando a palavra deles\n construida no nosso alfabeto";
+        dialogues[11] = "Basta você usar a chave de forma\n INVERSA para achar a palavra";
+        dialogues[12] = "Conseguindo três você \nconsegue passar pelo castelo";
+        dialogues[13] = "Boa sorte, você vai precisar....\n uma dica, explore os caminhos\n da esquerda, posso ter\n deixado uma surpresa mágica";
+        dialogues[14] = "Se achar difícil lembre, \npelo menos nao é prova por indução";
 
     }
 
-    public void setAction(){
-        actionLockCounter++;
-
-        if(actionLockCounter==120){
-            Random random = new Random();
-            int i = random.nextInt(100)+1;
-
-            if(i <=25){
-                direction="up";
-            }
-            if(i >25 && i<=50){
-                direction="down";
-            }
-            if(i > 50 && i<=75){
-                direction="left";
-            }
-            if(i>75 && i <=100){
-                direction="right";
-            }
-            actionLockCounter=0;
-          
-        }
-       
-    }
-
+    
     public void speak(){
         super.speak();
 

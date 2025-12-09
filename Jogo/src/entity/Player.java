@@ -116,6 +116,11 @@ public class Player extends Entity {
             String objectName = gp.obj[i].name;
 
             switch (objectName) {
+                case "WrongKey":
+                    gp.obj[i] = null;
+                    gp.ui.gameOver=true;
+                    break;
+
                 case "Key":
                     gp.playSE(1);
                     hasKey++;
@@ -128,14 +133,15 @@ public class Player extends Entity {
                         gp.obj[i] = null;
                         hasKey--;
                         gp.ui.showMessage("Você usou uma chave!");
-                    break;
+                        break;
                     }else{
                         gp.ui.showMessage("Sem chaves no inventário");
+                        break;
                         
                     }
                 case "Boots":
                     gp.playSE(2);
-                    speed += 2; // Aumenta a velocidade do jogador 
+                    speed += 1; // Aumenta a velocidade do jogador 
                     gp.obj[i] = null; // Remove as botas do jogo
                     gp.ui.showMessage("Acelerando!");
                     break;   
@@ -145,7 +151,6 @@ public class Player extends Entity {
                     gp.ui.gameFinished=true;
                     gp.stopMusic(); 
                     gp.playSE(4);
-                    // Aqui você pode adicionar lógica para finalizar o jogo, se necessário
                     break;
                 }
 

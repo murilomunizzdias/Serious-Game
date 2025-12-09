@@ -18,7 +18,10 @@ public class UI {
     public String message="";
     public int messageCounter=0;
     public boolean gameFinished=false;
+    public boolean gameOver = false;//eu fiz
     public String currentDialogue="";
+    public int commandNum = 0;
+
     
 
 
@@ -41,9 +44,17 @@ public class UI {
 
         g2.setFont(arial_40);
         g2.setColor(Color.white);
+        //TITLE STATE
+        if(gp.gameState==gp.titleState){
+            drawTitleScreen();
+        }
         //PLAY
         if(gp.gameState==gp.playState){
-            
+          
+            g2.setFont(arial_40);
+            g2.setColor(Color.white);
+            g2.drawImage(keyImage, gp.tileSize/2, gp.tileSize/2 , gp.tileSize, gp.tileSize, null);
+            g2.drawString("x "+ gp.player.hasKey, 74, 65);
         }
         //PAUSE
         if(gp.gameState==gp.pauseState){
@@ -82,10 +93,34 @@ public class UI {
             gp.gameThread = null;
         }
 
-        g2.setFont(arial_40);
-        g2.setColor(Color.white);
-        g2.drawImage(keyImage, gp.tileSize/2, gp.tileSize/2 , gp.tileSize, gp.tileSize, null);
-        g2.drawString("x "+ gp.player.hasKey, 74, 65);
+        if(gameOver==true){
+            
+            g2.setFont(arial_40);
+            g2.setColor(Color.RED);
+
+            String text;
+            int texLength;  
+            int x;
+            int y; 
+            
+            text = "Você errou a resposta";
+            texLength = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
+            x = gp.screenWidth/2 - texLength/2;
+            y = gp.screenHeight/2 - (gp.tileSize*3);
+            g2.drawString(text, x, y);
+
+
+            g2.setFont(arial_80B);
+            g2.setColor(Color.RED);
+            text = "GAME OVER!";
+            texLength = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
+            x = gp.screenWidth/2 - texLength/2;
+            y = gp.screenHeight/2 + (gp.tileSize*2);
+            g2.drawString(text, x, y);
+
+            gp.gameThread = null;
+        }
+
 
         //messages
         if(messageOn){
@@ -102,6 +137,62 @@ public class UI {
 
 
 
+    }
+
+    public void drawTitleScreen(){
+        
+        g2.setColor(new Color(70,120,80));
+        g2.fillRect(0,0, gp.screenWidth, gp.screenHeight);
+        //TITLE NAME
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,96F));
+        String text = "Unravel";
+        int x = getXforCenteredText(text);
+        int y = gp.tileSize*3;
+        
+        //shadow
+        g2.setColor(Color.black);
+        g2.drawString(text, x+5, y+5);
+        
+        //main color
+        g2.setColor(Color.white);
+        g2.drawString(text, x, y);
+
+        //Pedro
+        x = gp.screenWidth/2 - (gp.tileSize*2)/2;
+        y += gp.tileSize*2;
+        g2.drawImage(gp.player.down2,x,y,gp.tileSize*2,gp.tileSize*2,null);
+
+        //menu
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,48F));
+
+        //Start
+
+        text="Start";
+        x=getXforCenteredText(text);
+        y += gp.tileSize*3.5;
+        g2.drawString(text, x, y);
+        if(commandNum == 0){
+            g2.drawString(">", x-gp.tileSize, y);
+        }
+
+        //Load
+        text="!Load!";
+        x=getXforCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+        if(commandNum == 1  ){
+            g2.drawString(">", x-gp.tileSize, y);
+        }
+
+        //Quit
+        text="Quit";
+        x=getXforCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+        if(commandNum == 2){
+            g2.drawString(">", x-gp.tileSize, y);
+        }
+        
     }
 
     public void drawDialogueScreen(){
