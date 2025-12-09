@@ -13,6 +13,7 @@ public class NPC_OldMan extends Entity {
         speed = 1;
 
         getImage();
+        setDialogue();
 
     }
 
@@ -25,6 +26,18 @@ public class NPC_OldMan extends Entity {
         left2 = setup("/res/npc/oldman_left_2");
         right1 = setup("/res/npc/oldman_right_1");
         right2 = setup("/res/npc/oldman_right_2");
+
+    }
+
+    public void setDialogue(){
+        dialogues[0] = "Olá pedro!, eu sou o grande mago Casseb";
+        dialogues[1] = "Então você veio em busca do tesouro....";
+        dialogues[2] = "Conseguir ele não será fácil, \n será preciso conhecer CRIPTOGRAFIA!";
+        dialogues[3] = "Você deve seguir os três caminhos abaixos";
+        dialogues[4] = "lá meus aprendizes vão te apresentar uma\n mensagem criptografada,\ndecifrando ela voce ganha uma chave!";
+        dialogues[5] = "Conseguindo três você \nconsegue passar pelo castelo";
+        dialogues[6] = "Boa sorte, você vai precisar....";
+        dialogues[7] = "Se achar difícil lembre, \npelo menos nao é prova por indução";
 
     }
 
@@ -51,6 +64,11 @@ public class NPC_OldMan extends Entity {
           
         }
        
+    }
+
+    public void speak(){
+        super.speak();
+
     }
     
 
