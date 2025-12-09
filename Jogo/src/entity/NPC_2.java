@@ -37,7 +37,7 @@ public void getImage() {
         dialogues[3] = "[5 13] [4 11] [6 15] [7 19] \n[4 10] [0 0] [6 16]";
         dialogues[4]= "o quarto em cima na esquerda esta a chave\n na qual a resposta é inducao";
         dialogues[5]= "o quarto a direita em cima esta a chave\n na qual a resposta é secreta";
-        dialogues[6] = "e a chave no primeiro quarto esta\n a qual a resposta é resolva";
+        dialogues[6] = "o primeiro quarto esta a chave\n a qual a resposta é resolva";
 
     }
 
