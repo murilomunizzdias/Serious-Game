@@ -2,22 +2,21 @@ package entity;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import centro.GamePanel;
 import centro.KeyHandler;
-import centro.UtilityTool;
+
 
 public class Player extends Entity {
-    GamePanel gp;
+  
     KeyHandler keyH;
 
     public final int screenX;
     public final int screenY;
     public int hasKey=0;
 
-    public Player(GamePanel gp, KeyHandler keyH, int solidAreaDefaultX, int solidAreaDefaultY){
-        this.gp = gp;
+    public Player(GamePanel gp, KeyHandler keyH){
+        super(gp);
+        
         this.keyH = keyH;
 
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
@@ -41,29 +40,15 @@ public class Player extends Entity {
         direction="down";
     }
    public void getPlayerImage() {
-        up1 = setup("Oliver_up_1");
-        up2 = setup("Oliver_up_2");
-        down1 = setup("Oliver_down_1");
-        down2 = setup("Oliver_down_2");
-        left1 = setup("Oliver_left_1");
-        left2 = setup("Oliver_left_2");
-        right1 = setup("Oliver_right_1");
-        right2 = setup("Oliver_right_2");
+        up1 = setup("/res/Oliver/Oliver_up_1");
+        up2 = setup("/res/Oliver/Oliver_up_2");
+        down1 = setup("/res/Oliver/Oliver_down_1");
+        down2 = setup("/res/Oliver/Oliver_down_2");
+        left1 = setup("/res/Oliver/Oliver_left_1");
+        left2 = setup("/res/Oliver/Oliver_left_2");
+        right1 = setup("/res/Oliver/Oliver_right_1");
+        right2 = setup("/res/Oliver/Oliver_right_2");
 
-    }
-
-    public BufferedImage setup(String imageName){
-       UtilityTool uTool = new UtilityTool();
-       BufferedImage image = null;
-
-       try{
-          image = ImageIO.read(getClass().getResourceAsStream("/res/Oliver/"+imageName + ".png"));
-          image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-
-       }catch(IOException e){
-          e.printStackTrace();
-       }
-       return image;
     }
     
     public void update(){
@@ -83,12 +68,17 @@ public class Player extends Entity {
                 
             }
 
+            //check tile collision
             collisionOn=false;
             gp.cChecker.checkTile(this);
 
             //check object collision
             int objIndex = gp.cChecker.checkObject(this, true);
             pickUpObject(objIndex);
+            
+            //check npc collision
+            int npcIndex = gp.cChecker.checkEntity(this,gp.npc);
+            interactNpc(npcIndex);
 
             //IF COLLISION IS FALSE, PLAYER CAN MOVE
             if(collisionOn==false){
@@ -164,6 +154,11 @@ public class Player extends Entity {
         return 0;
     }
 
+    public void interactNpc(int i){
+        if(i != 999){
+            
+        }
+    }
     public void draw(Graphics2D g2){
         BufferedImage image = null;
         

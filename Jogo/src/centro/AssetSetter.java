@@ -1,5 +1,6 @@
 package centro;
 import object.OBJ_Key;
+import entity.NPC_OldMan;
 import object.OBJ_Boots;
 import object.OBJ_Door;
 import object.OBJ_Chest;
@@ -35,5 +36,11 @@ public class AssetSetter {
         gp.obj[5]= new OBJ_Chest(gp);
         gp.obj[5].worldX=21*gp.tileSize;    
         gp.obj[5].worldY=37*gp.tileSize;
+    }
+
+    public void setNpc(){
+        gp.npc[0]= new NPC_OldMan(gp);
+        gp.npc[0].worldX =gp.tileSize*27;
+        gp.npc[0].worldY = gp.tileSize*21;
     }
 }
